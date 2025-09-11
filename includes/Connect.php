@@ -1,12 +1,4 @@
 <?php
-require_once PAGE_PATH.'/errors/Database.php';
-
-//thông tin kết nối 
-const _HOST = 'localhost';
-const _USER = 'root';
-const _PASS = '';
-const _DB = 'ecommerce-phone123';
-const _DRIVER = 'mysql';
 
 try{
     //kiểm tra PDO 
@@ -21,9 +13,8 @@ try{
         $conn = new PDO($dsn, _USER, _PASS, $option);
         //var_dump($conn);
     }
-}catch(Exception $exception){
-    showDatabaseError($exception->getMessage());
-    
+}catch(Exception $e){
+    require_once 'pages/errors/Database.php';
     die();
 }
 

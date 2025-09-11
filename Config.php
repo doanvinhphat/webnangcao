@@ -8,6 +8,7 @@ const _INCODE = true;
 
 //cấu hình đường dẫn
 define('BASE_PATH', __DIR__); // đường dẫn gốc: C:\laragon\www\webnangcao
+define('INCLUDES_PATH', BASE_PATH.'/includes'); // đường dẫn gốc: C:\laragon\www\webnangcao\includes
 define('PAGE_PATH', BASE_PATH.'/pages'); // đường dẫn gốc: C:\laragon\www\webnangcao\pages
 
 
@@ -19,3 +20,11 @@ define('BASE_URL', $protocol . $host . '/' . $projectName);
 
 
 define('ASSETS_URL', BASE_URL.'/assets'); // => http://localhost/webnangcao/assets
+
+
+//thông tin kết nối 
+const _HOST = 'localhost';
+const _USER = 'root';
+const _PASS = '';
+const _DB = 'ecommerce-phone';
+const _DRIVER = 'mysql';

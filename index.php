@@ -1,7 +1,15 @@
 <?php
 session_start(); 
 require_once 'Config.php';
+
+require_once 'includes/phpmailer/PHPMailer.php';
+require_once 'includes/phpmailer/SMTP.php';
+require_once 'includes/phpmailer/Exception.php';
+
+require_once 'includes/Functions.php';
 require_once 'includes/Connect.php';
+require_once 'includes/Database.php';
+require_once 'includes/Sessions.php';
 
 //gán mặc định
 $module = _MODULE_DEFAULT;
