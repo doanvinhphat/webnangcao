@@ -138,3 +138,30 @@ function getBody($method = '')
 
     return $bodyArr;
 }
+
+//Hàm thông báo lỗi validate
+function form_error($fieldName, $errors, $beforeHtml = '', $afterHtml = '')
+{
+    return (!empty($errors[$fieldName])) ? $beforeHtml . reset($errors[$fieldName]) . $afterHtml : null;
+}
+
+//Hàm tạo thông báo
+function getMsg($msg, $type = 'success')
+{
+    if (!empty($msg)) {
+        echo '
+        <div class="container mt-3">
+            <div class="alert alert-' . $type . ' alert-dismissible fade show shadow-sm rounded-3" 
+                 role="alert" style="max-width: 600px; margin: 0 auto;">
+                ' . $msg . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>';
+    }
+}
+
+//Hàm hiển thị dữ liệu cũ
+function old($fieldName, $oldData, $default = null)
+{
+    return (!empty($oldData[$fieldName])) ? htmlspecialchars($oldData[$fieldName]) : $default;
+}

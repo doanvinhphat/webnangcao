@@ -1,5 +1,8 @@
 <?php
 session_start(); 
+ob_start();
+ini_set('display_errors', 0);
+error_reporting(0);
 require_once 'Config.php';
 
 require_once 'includes/phpmailer/PHPMailer.php';
@@ -10,6 +13,8 @@ require_once 'includes/Functions.php';
 require_once 'includes/Connect.php';
 require_once 'includes/Database.php';
 require_once 'includes/Sessions.php';
+
+
 
 //gán mặc định
 $module = _MODULE_DEFAULT;
