@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 ob_start();
 ini_set('display_errors', 0);
 error_reporting(0);
@@ -38,10 +38,20 @@ if (!empty($_GET['action'])) {
 // echo $action;
 
 //kiểm tra tồn tại trong thư mục
-$path = 'pages/' . $module . '/' . $action . '.php';
-//echo $path;
-if (file_exists($path)) {
-    require_once $path;
+// Nếu là admin thì luôn gọi layout
+if ($module === 'admin') {
+    $layout = 'pages/admin/admin_layout.php';
+    if (file_exists($layout)) {
+        require_once $layout;
+    } else {
+        require_once 'pages/errors/404.php';
+    }
 } else {
-    require_once 'pages/errors/404.php';
+    // load các module khác
+    $path = 'pages/' . $module . '/' . $action . '.php';
+    if (file_exists($path)) {
+        require_once $path;
+    } else {
+        require_once 'pages/errors/404.php';
+    }
 }

@@ -29,28 +29,27 @@ if (isPost()) {
     $errors['fullname']['min'] = 'Họ và tên phải từ 6 ký tự trở lên';
   }
 
-
   if (empty(trim($body['email']))) {
     $errors['email']['required'] = 'Vui lòng nhập email';
   } elseif (!filter_var($body['email'], FILTER_VALIDATE_EMAIL)) {
     $errors['email']['regex'] = 'Email không đúng định dạng';
+  } elseif (checkExists('users', 'email', $body['email'])) {
+    $errors['email']['unique'] = 'Email đã tồn tại';
   }
-
-
 
   if (empty(trim($body['phone']))) {
     $errors['phone']['required'] = 'Vui lòng nhập phone';
   } elseif (!preg_match('/^0[0-9]{9}$/', $body['phone'])) {
     $errors['phone']['regex'] = 'Số điện thoại không hợp lệ';
+  } elseif (checkExists('users', 'phone', $body['phone'])) {
+    $errors['phone']['unique'] = 'Số điện thoại đã tồn tại';
   }
-
 
   if (empty(trim($body['password']))) {
     $errors['password']['required'] = 'Vui lòng nhập mật khẩu';
   } elseif (strlen(trim($body['password'])) < 6) {
     $errors['password']['min'] = 'Mật khẩu phải ít nhất 6 ký tự';
   }
-
 
   if (empty(trim($body['confirmPassword']))) {
     $errors['confirmPassword']['required'] = 'Vui lòng nhập lại mật khẩu';
@@ -73,24 +72,33 @@ if (isPost()) {
       'phone'    => $body['phone'],
       'password' => $password,
     ];
-    // Thực hiện insert
-    // $insertStatus = insert('users', $dataInsert);
 
-    // if ($insertStatus) {
-    //   echo "Đăng ký thành công!";
-    // } else {
-    //   echo "Có lỗi xảy ra, vui lòng thử lại.";
-    // }
+    // Thực hiện insert
+    $insertStatus = insert('users', $dataInsert);
+
+    if ($insertStatus) {
+      setFlashData('msg', 'Đăng ký thành công');
+      setFlashData('msg_type', 'success');
+
+      redirect('?module=auth&action=login');
+    } else {
+      setFlashData('msg', 'Lỗi hệ thống! Bạn không thể đăng ký');
+      setFlashData('msg_type', 'danger');
+    }
   } else {
-    echo 'Vui lòng nhập lại form';
+    setFlashData('msg', 'Vui lòng kiểm tra dữ liệu nhập vào');
+    setFlashData('msg_type', 'danger');
   }
 }
 
 $old = getFlashData('old');
+$msg = getFlashData('msg');
+$msgType = getFlashData('msg_type');
 ?>
 
 <body>
   <div class="container mt-5">
+    <?php getMsg($msg, $msgType); ?>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <fieldset class="border p-4 rounded">

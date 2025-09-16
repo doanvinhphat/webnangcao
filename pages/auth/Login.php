@@ -20,77 +20,63 @@
 
 <?php
 $errors = [];
+$body = getBody();
+
 if (isPost()) {
-  $body = getBody();
+  $phone = trim($body['phone']);
+  $password = trim($body['password']);
 
-  if (empty(trim($body['fullname']))) {
-    $errors['fullname']['required'] = 'Vui lòng nhập họ và tên';
-  } elseif (strlen(trim($body['fullname'])) < 6) {
-    $errors['fullname']['min'] = 'Họ và tên phải từ 6 ký tự trở lên';
-  }
-
-
-  if (empty(trim($body['email']))) {
-    $errors['email']['required'] = 'Vui lòng nhập email';
-  } elseif (!filter_var($body['email'], FILTER_VALIDATE_EMAIL)) {
-    $errors['email']['regex'] = 'Email không đúng định dạng';
-  }
-
-
-
-  if (empty(trim($body['phone']))) {
-    $errors['phone']['required'] = 'Vui lòng nhập phone';
-  } elseif (!preg_match('/^0[0-9]{9}$/', $body['phone'])) {
+  // Validate phone
+  if (empty($phone)) {
+    $errors['phone']['required'] = 'Vui lòng nhập số điện thoại';
+  } elseif (!preg_match('/^0[0-9]{9}$/', $phone)) {
     $errors['phone']['regex'] = 'Số điện thoại không hợp lệ';
   }
 
-
-  if (empty(trim($body['password']))) {
+  // Validate password
+  if (empty($password)) {
     $errors['password']['required'] = 'Vui lòng nhập mật khẩu';
-  } elseif (strlen(trim($body['password'])) < 6) {
-    $errors['password']['min'] = 'Mật khẩu phải ít nhất 6 ký tự';
   }
 
-
-  if (empty(trim($body['confirmPassword']))) {
-    $errors['confirmPassword']['required'] = 'Vui lòng nhập lại mật khẩu';
-  } elseif (trim($body['password']) !== trim($body['confirmPassword'])) {
-    $errors['confirmPassword']['compare'] = 'Nhập lại mật khẩu không đúng';
-  }
-
-
+  // Nếu không có lỗi thì xử lý login
   if (empty($errors)) {
-    // echo "<pre>";
-    // print_r($body);
-    // echo "</pre>";
+    $user = first("SELECT * FROM users WHERE phone = :phone LIMIT 1", ['phone' => $phone]);
 
-    //hash password 
-    $password = password_hash($body['password'], PASSWORD_DEFAULT);
+    if ($user) {
+      if (password_verify($password, $user['password'])) {
+        // Lưu session
+        $_SESSION['currentUser'] = [
+          'id' => $user['id'],
+          'fullname' => $user['fullname'],
+          'email' => $user['email'],
+          'phone' => $user['phone'],
+          'role' => $user['role']
+        ];
 
-    $dataInsert = [
-      'fullname' => $body['fullname'],
-      'email'    => $body['email'],
-      'phone'    => $body['phone'],
-      'password' => $password,
-    ];
-    // Thực hiện insert
-    // $insertStatus = insert('users', $dataInsert);
-
-    // if ($insertStatus) {
-    //   echo "Đăng ký thành công!";
-    // } else {
-    //   echo "Có lỗi xảy ra, vui lòng thử lại.";
-    // }
-  } else {
-    echo 'Vui lòng nhập lại form';
+        // Chuyển hướng
+        if ($_SESSION['currentUser']['role'] === "admin") {
+          redirect('?module=admin');
+        } else {
+          redirect('?module=home&action=lists');
+        }
+        exit;
+      } else {
+        $errors['password']['match'] = 'Mật khẩu không đúng';
+      }
+    } else {
+      $errors['phone']['notfound'] = 'Số điện thoại không tồn tại';
+    }
   }
 }
 
 $old = getFlashData('old');
+$msg = getFlashData('msg');
+$msgType = getFlashData('msg_type');
 ?>
 
 <body>
   <div class="container mt-5">
+    <?php getMsg($msg, $msgType); ?>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <fieldset class="border p-4 rounded">
@@ -127,6 +113,16 @@ $old = getFlashData('old');
               <button type="submit" class="btn btn-primary mx-auto d-block">
                 Đăng nhập
               </button>
+            </div>
+            <!-- Link to Register -->
+            <div class="text-center mt-3">
+              <p>Bạn chưa có tài khoản?
+                <a href="?module=auth&action=register">Đăng ký ngay</a>
+              </p>
+            </div>
+            <!-- Link to Forgot -->
+            <div class="text-center mt-3">
+              <a href="?module=auth&action=forgot" class="text-decoration-none text-muted">Quên mật khẩu</a>
             </div>
           </form>
         </fieldset>

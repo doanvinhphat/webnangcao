@@ -1,5 +1,6 @@
 <?php
 //cấu hình
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // cài đặt múi giờ Việt Nam
 const _MODULE_DEFAULT = 'home';
 const _ACTION_DEFAULT = 'Lists';
 

@@ -11,6 +11,10 @@ try{
         ];
         
         $conn = new PDO($dsn, _USER, _PASS, $option);
+
+// Set timezone MySQL theo VN
+        $conn->exec("SET time_zone = '+07:00'");
+
         //var_dump($conn);
     }
 }catch(Exception $e){

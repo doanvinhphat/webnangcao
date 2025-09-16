@@ -71,70 +71,14 @@
   </div>
 </footer>
 
-<!-- Custom CSS -->
-<style>
-  footer {
-    background-color: #0d1b2a; /* xanh đậm */
-  }
-  .newsletter-input {
-    background-color: #2b2d42;
-    border: none;
-    color: #fff;
-  }
-  .newsletter-input::placeholder {
-    color: #aaa;
-  }
-  .footer-title {
-    position: relative;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-  }
-  .footer-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 2px;
-    background-color: #0d6efd;
-  }
-  .footer-link {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 6px;
-    transition: color 0.3s ease;
-  }
-  .footer-link:hover {
-    color: #fff;
-  }
-  .btn-app {
-    background-color: #1c1f2b;
-    color: #fff;
-    border: none;
-    text-align: left;
-    padding: 10px 15px;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-  }
-  .btn-app:hover {
-    background-color: #2c3145;
-    color: #fff;
-  }
-</style>
-
-<!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</html>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<?php echo ASSETS_URL ?>/js/style.js?v=<?php echo time(); ?>"></script>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </body>
-</html>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
+<!--Custom JS -->
     <script src="<?php echo ASSETS_URL ?>/js/style.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

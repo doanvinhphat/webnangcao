@@ -165,3 +165,15 @@ function old($fieldName, $oldData, $default = null)
 {
     return (!empty($oldData[$fieldName])) ? htmlspecialchars($oldData[$fieldName]) : $default;
 }
+
+//Hàm chuyển hướng
+function redirect($path = 'index.php', $fullUrl = false)
+{
+    if (empty($fullUrl)) {
+        $url = BASE_URL  . '/' . $path;
+    } else {
+        $url = $path;
+    }
+    header("Location: $url");
+    exit;
+}
