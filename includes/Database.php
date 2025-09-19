@@ -16,7 +16,7 @@ function query($sql, $data = [], $statementStatus = false)
         }
     } catch (Exception $e) {
 
-        require_once 'modules/errors/database.php'; //Import error
+        require_once PAGE_PATH.'/errors/database.php'; //Import error
         die(); //Dừng hết chương trình
     }
 

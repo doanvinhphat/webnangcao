@@ -2,7 +2,8 @@
 $menuItems = [
     ["label" => "Dashboard", "icon" => "fa-solid fa-gauge", "controller" => null, "action" => "dashboard"],
     ["label" => "Người dùng", "icon" => "fa-solid fa-users", "controller" => "users", "action" => "list"],
-    ["label" => "Bài viết", "icon" => "fa-solid fa-file-lines", "controller" => "posts", "action" => "list"],
+    ["label" => "Danh mục", "icon" => "fa-solid fa-folder", "controller" => "categories", "action" => "list"],
+    ["label" => "Sản phẩm", "icon" => "fa-solid fa-box", "controller" => "products", "action" => "list"],
 ];
 ?>
 <div class="d-flex flex-column p-3 text-white sidebar">

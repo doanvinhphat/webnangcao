@@ -23,6 +23,16 @@ define('BASE_URL', $protocol . $host . '/' . $projectName);
 define('ASSETS_URL', BASE_URL.'/assets'); // => http://localhost/webnangcao/assets
 
 
+// Đường dẫn vật lý tới thư mục uploads
+define('UPLOADS_PATH', BASE_PATH . '/public/uploads');
+
+// Đường dẫn uploads cho trình duyệt
+define('UPLOADS_URL', BASE_URL . '/public/uploads');
+
+// Riêng cho sản phẩm
+define('PRODUCT_UPLOADS_PATH', UPLOADS_PATH . '/products');
+define('PRODUCT_UPLOADS_URL', UPLOADS_URL . '/products');
+
 //thông tin kết nối 
 const _HOST = 'localhost';
 const _USER = 'root';

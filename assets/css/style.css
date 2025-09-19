@@ -1,3 +1,10 @@
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+    background-color: #fff !important;
+}
+
 .sidebar {
   min-height: 100vh;
   background-color: #000;
