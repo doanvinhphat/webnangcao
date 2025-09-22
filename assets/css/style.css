@@ -120,3 +120,111 @@ footer {
   background-color: #2c3145;
   color: #fff;
 }
+
+/* navbar categories */
+  .navbar .nav-link {
+    color: #000;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+    color: #0d6efd;
+  }
+
+  .navbar .nav-link.active {
+    color: #0d6efd !important;
+  }
+
+
+ /* trending prodct */
+  .product-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+  .product-card img {
+    max-height: 180px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover img {
+    transform: scale(1.05);
+  }
+  .product-overlay {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  .product-card:hover .product-overlay {
+    bottom: 15px;
+    opacity: 1;
+  }
+  .product-overlay .btn {
+    border-radius: 20px;
+  }
+  
+ /* logo brand silder */
+ /* Slider wrapper */
+.brand-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Track chạy liên tục */
+.brand-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+/* Mỗi logo */
+.brand-item {
+  flex: 0 0 auto;
+  width: 200px; /* chỉnh kích thước theo ý muốn */
+  padding: 10px;
+}
+
+.brand-item img {
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+
+.brand-item img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Animation chạy ngang */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* chạy hết nửa track => loop */
+}
+
+
+/* Tablet (>=768px và <=991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .auth-buttons .btn {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem; /* giữ kích thước vừa phải */
+  }
+}
+
+/* Mobile (<768px) */
+@media (max-width: 767.98px) {
+  .auth-buttons .btn {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.875rem; /* nhỏ gọn hơn */
+  }
+}
+
