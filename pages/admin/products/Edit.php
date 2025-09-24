@@ -141,14 +141,15 @@ if (isPost()) {
                 </div>
 
                 <!-- Mô tả -->
-                <div class="mb-3">
-                    <label for="description" class="form-label fw-bold"><i class="bi bi-card-text"></i> Mô tả</label>
-                    <textarea name="description" id="description" rows="5" class="form-control"
-                        placeholder="Nhập mô tả chi tiết..."><?= htmlspecialchars(html_entity_decode(old('description', $body))) ?></textarea>
+    <div class="mb-3">
+    <label for="description" class="form-label fw-bold">
+        <i class="bi bi-card-text"></i> Mô tả
+    </label>
+    <textarea name="description" id="description" rows="5" class="form-control"
+        placeholder="Nhập mô tả chi tiết..."><?= htmlspecialchars(html_entity_decode(old('description', $body))) ?></textarea>
 
-                    <div class="small text-danger mt-1"><?= form_error('description', $errors) ?></div>
-                </div>
-
+    <div class="small text-danger mt-1"><?= form_error('description', $errors) ?></div>
+</div>
                 <div class="row g-3">
                     <div class="col-md-4">
                         <label class="form-label fw-bold"><i class="bi bi-cash"></i> Giá gốc</label>
@@ -226,7 +227,7 @@ if (isPost()) {
         </div>
     </form>
 </div>
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const priceInput = document.getElementById("price");

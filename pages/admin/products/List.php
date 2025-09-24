@@ -1,6 +1,6 @@
 <?php
 
-$perPage = 2;
+$perPage = 6;
 
 // --- TRANG HIỆN TẠI ---
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
