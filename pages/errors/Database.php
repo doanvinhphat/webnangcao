@@ -22,7 +22,9 @@ if(!defined('_INCODE')) die('Truy cập bị từ chối!');
                 <strong>File:</strong> <?php echo $e->getFile(); ?><br>
                 <strong>Line:</strong> <?php echo $e->getLine(); ?>
             </div>
-            <a href="index.php" class="btn btn-primary mt-3">Quay lại trang chủ</a>
+            <?php if (!$_SESSION['currentUser']['role'] === 'admin') { ?>
+                    <a href="index.php" class="btn btn-primary mt-3">Quay lại trang chủ</a>
+                <?php } ?>
         </div>
     </div>
 </div>

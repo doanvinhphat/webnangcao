@@ -209,6 +209,20 @@ footer {
   100% { transform: translateX(-50%); } /* chạy hết nửa track => loop */
 }
 
+.cart-dropdown {
+  animation: fadeIn 0.2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.text-ellipsis {
+    max-width: 200px;       /* tùy chỉnh theo layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* Tablet (>=768px và <=991.98px) */
 @media (min-width: 768px) and (max-width: 991.98px) {

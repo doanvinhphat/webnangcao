@@ -1,0 +1,56 @@
+25/09/2025
+- Sử header: 
+<a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="?module=home&action=lists">
+            <i class="bi bi-globe2 me-2"></i> MyWebsite
+          </a>
+
+- Detail, style.js
+- style.css 
+- style.js 
+
+
+GPT cần biết query, insert, update, delete, first, getRaws (đối với database)
+
+lệnh show database cho GPT biết:
+SHOW CREATE TABLE products;
+SHOW CREATE TABLE orders;
+SHOW CREATE TABLE order_items;
+
+bảng orders cần sửa field
+bảng order_items cần sửa field
+
+********************************************************************************
+- 26/09/2025
+- Checkout.php 
+orders = thông tin tổng quan (ngày đặt, địa chỉ, tổng tiền, trạng thái, user_id).
+order_items = chi tiết sản phẩm của đơn (sản phẩm nào, số lượng, giá).
+
+tạo avatar trong public
+//Riêng cho avatar
+define('AVATAR_UPLOADS_PATH', UPLOADS_PATH . '/avatars');
+
+- cập nhật header
+
+ALTER TABLE products
+ADD CONSTRAINT chk_stock_non_negative CHECK (stock >= 0);
+
+********************************************************************************
+27/09/2025
+làm voucher ở admin
+ALTER TABLE vouchers MODIFY discount_value INT UNSIGNED NOT NULL;
+
+********************************************************************************
+28/09/2025  
+làm quản lý đơn hàng cho admin (orders)
+làm site settings
+.text-ellipsis {
+    max-width: 200px;       /* tùy chỉnh theo layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+note url xử lý role vào layout khi người dùng đã đăng nhập nhưng cố tình sửa URl để vào trang khác
+

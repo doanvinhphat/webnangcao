@@ -50,6 +50,7 @@ if (isPost()) {
           'fullname' => $user['fullname'],
           'email' => $user['email'],
           'phone' => $user['phone'],
+          'avatar' => $user['avatar'],
           'role' => $user['role']
         ];
 

@@ -33,6 +33,9 @@ define('UPLOADS_URL', BASE_URL . '/public/uploads');
 define('PRODUCT_UPLOADS_PATH', UPLOADS_PATH . '/products');
 define('PRODUCT_UPLOADS_URL', UPLOADS_URL . '/products');
 
+//avatar
+define('AVATAR_UPLOADS_PATH', UPLOADS_PATH . '/avatars');
+
 //thông tin kết nối 
 const _HOST = 'localhost';
 const _USER = 'root';

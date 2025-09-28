@@ -4,6 +4,9 @@ $menuItems = [
     ["label" => "Người dùng", "icon" => "fa-solid fa-users", "controller" => "users", "action" => "list"],
     ["label" => "Danh mục", "icon" => "fa-solid fa-folder", "controller" => "categories", "action" => "list"],
     ["label" => "Sản phẩm", "icon" => "fa-solid fa-box", "controller" => "products", "action" => "list"],
+    ["label" => "Voucher", "icon" => "fa-solid fa-ticket", "controller" => "vouchers", "action" => "list"],
+    ["label" => "Đơn hàng", "icon" => "fa-solid fa-cart-shopping", "controller" => "orders", "action" => "list"],
+    ["label" => "Cấu hình", "icon" => "fa-solid fa-gear", "controller" => "site_settings", "action" => "list"],
 ];
 ?>
 <div class="d-flex flex-column p-3 text-white sidebar">
