@@ -1,8 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 .form-control:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: #ced4da !important;
-    background-color: #fff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ced4da !important;
+  background-color: #fff !important;
 }
 
 .sidebar {
@@ -44,6 +58,7 @@
   padding: 2rem;
   height: 100%;
 }
+
 .promo-dark {
   background-color: #06112a;
   color: #fff;
@@ -51,21 +66,37 @@
   padding: 2rem;
   height: 100%;
 }
+
 .promo-img {
   max-width: 100%;
   height: auto;
 }
+
 .category-card {
   transition: all 0.3s ease;
 }
+
 .category-card:hover {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
 }
+
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.card-hover:hover {
+  border: 1px solid #dc3545; /* viền đỏ khi hover */
+  box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.25); /* shadow đỏ nhẹ */
+  transform: translateY(-4px); /* nổi lên nhẹ */
+}
+
 .product-card {
   transition: all 0.3s ease;
   background-color: #fff;
 }
+
 .product-card:hover {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
@@ -73,21 +104,26 @@
 
 /* Footer*/
 footer {
-  background-color: #0d1b2a; /* xanh đậm */
+  background-color: #0d1b2a;
+  /* xanh đậm */
 }
+
 .newsletter-input {
   background-color: #2b2d42;
   border: none;
   color: #fff;
 }
+
 .newsletter-input::placeholder {
   color: #aaa;
 }
+
 .footer-title {
   position: relative;
   padding-bottom: 8px;
   margin-bottom: 15px;
 }
+
 .footer-title::after {
   content: "";
   position: absolute;
@@ -97,6 +133,7 @@ footer {
   height: 2px;
   background-color: #0d6efd;
 }
+
 .footer-link {
   color: #ccc;
   text-decoration: none;
@@ -104,9 +141,11 @@ footer {
   margin-bottom: 6px;
   transition: color 0.3s ease;
 }
+
 .footer-link:hover {
   color: #fff;
 }
+
 .btn-app {
   background-color: #1c1f2b;
   color: #fff;
@@ -116,62 +155,68 @@ footer {
   border-radius: 6px;
   transition: background 0.3s ease;
 }
+
 .btn-app:hover {
   background-color: #2c3145;
   color: #fff;
 }
 
 /* navbar categories */
-  .navbar .nav-link {
-    color: #000;
-    transition: color 0.2s ease-in-out;
-  }
+.navbar .nav-link {
+  color: #000;
+  transition: color 0.2s ease-in-out;
+}
 
-  .navbar .nav-link:hover,
-  .navbar .nav-link:focus {
-    color: #0d6efd;
-  }
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: #0d6efd;
+}
 
-  .navbar .nav-link.active {
-    color: #0d6efd !important;
-  }
+.navbar .nav-link.active {
+  color: #0d6efd !important;
+}
 
+/* trending prodct */
+.product-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
 
- /* trending prodct */
-  .product-card {
-    transition: all 0.3s ease;
-    border-radius: 12px;
-  }
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  }
-  .product-card img {
-    max-height: 180px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-  }
-  .product-card:hover img {
-    transform: scale(1.05);
-  }
-  .product-overlay {
-    position: absolute;
-    bottom: -60px;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-  .product-card:hover .product-overlay {
-    bottom: 15px;
-    opacity: 1;
-  }
-  .product-overlay .btn {
-    border-radius: 20px;
-  }
-  
- /* logo brand silder */
- /* Slider wrapper */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  max-height: 180px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.product-overlay {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+  bottom: 15px;
+  opacity: 1;
+}
+
+.product-overlay .btn {
+  border-radius: 20px;
+}
+
+/* logo brand silder */
+/* Slider wrapper */
 .brand-slider {
   overflow: hidden;
   position: relative;
@@ -187,7 +232,8 @@ footer {
 /* Mỗi logo */
 .brand-item {
   flex: 0 0 auto;
-  width: 200px; /* chỉnh kích thước theo ý muốn */
+  width: 200px;
+  /* chỉnh kích thước theo ý muốn */
   padding: 10px;
 }
 
@@ -205,23 +251,39 @@ footer {
 
 /* Animation chạy ngang */
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* chạy hết nửa track => loop */
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+  /* chạy hết nửa track => loop */
 }
 
 .cart-dropdown {
   animation: fadeIn 0.2s ease-in-out;
 }
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .text-ellipsis {
-    max-width: 200px;       /* tùy chỉnh theo layout */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  max-width: 200px;
+  /* tùy chỉnh theo layout */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Tablet (>=768px và <=991.98px) */
@@ -229,7 +291,8 @@ footer {
   .auth-buttons .btn {
     padding-left: 1rem;
     padding-right: 1rem;
-    font-size: 1rem; /* giữ kích thước vừa phải */
+    font-size: 1rem;
+    /* giữ kích thước vừa phải */
   }
 }
 
@@ -238,7 +301,7 @@ footer {
   .auth-buttons .btn {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    font-size: 0.875rem; /* nhỏ gọn hơn */
+    font-size: 0.875rem;
+    /* nhỏ gọn hơn */
   }
 }
-

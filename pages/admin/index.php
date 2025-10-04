@@ -18,6 +18,13 @@ if (!file_exists($file)) {
     $file = PAGE_PATH . '/errors/404.php';
 }
 
+$currentUser = $_SESSION['currentUser'];
+if ($currentUser && $currentUser['role'] != 'admin') {
+    setFlashData('msg', 'Bạn không có quyền vào trang này');
+    setFlashData('msg_type', 'warning');
+    redirect('?module=home&action=lists');
+}
+
 // ❌ Không include trực tiếp nữa
 // ✅ Trả về đường dẫn để layout include
 return $file;

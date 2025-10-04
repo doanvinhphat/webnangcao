@@ -58,6 +58,27 @@ if (isPost()) {
         $updated = update('orders', ['status' => $newStatus], "id = $orderId");
 
         if ($updated) {
+            // Nếu trạng thái mới là completed thì gửi email cho user
+            if ($newStatus === 'completed') {
+                // Danh sách sản phẩm (tên + số lượng)
+                $itemsHtml = '';
+                foreach ($orderItems as $item) {
+                    $itemsHtml .= "<li>{$item['name']} x {$item['quantity']}</li>";
+                }
+
+                $subject = "Đơn hàng #$orderId đã hoàn tất";
+                $content = "
+    <p>Xin chào {$order['fullname']},</p>
+    <p>Đơn hàng <b>#$orderId</b> của bạn đã được xử lý thành công.</p>
+    
+    <p><b>Chi tiết đơn hàng:</b></p>
+    <ul>$itemsHtml</ul>
+    <p><b>Tổng tiền: " . number_format($order['total_amount'], 0, ',', '.') . " ₫</b></p>
+
+    <p>Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!</p>
+";
+                sendMail($order['email'], $subject, $content);
+            }
             setFlashData('msg', 'Cập nhật trạng thái đơn hàng thành công');
             setFlashData('msg_type', 'success');
             $order['status'] = $newStatus;

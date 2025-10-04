@@ -44,23 +44,30 @@ if (isPost()) {
 
     if ($user) {
       if (password_verify($password, $user['password'])) {
-        // Lưu session
-        $_SESSION['currentUser'] = [
-          'id' => $user['id'],
-          'fullname' => $user['fullname'],
-          'email' => $user['email'],
-          'phone' => $user['phone'],
-          'avatar' => $user['avatar'],
-          'role' => $user['role']
-        ];
 
-        // Chuyển hướng
-        if ($_SESSION['currentUser']['role'] === "admin") {
-          redirect('?module=admin');
+        if ($user['isActive'] == 0) {
+          setFlashData('msg', 'Tài khoản của bạn đã bị khóa!');
+          setFlashData('msg_type', 'warning');
+          redirect('?module=auth&action=login');
         } else {
-          redirect('?module=home&action=lists');
+          // Lưu session
+          $_SESSION['currentUser'] = [
+            'id' => $user['id'],
+            'fullname' => $user['fullname'],
+            'email' => $user['email'],
+            'phone' => $user['phone'],
+            'avatar' => $user['avatar'],
+            'role' => $user['role']
+          ];
+
+          // Chuyển hướng
+          if ($_SESSION['currentUser']['role'] === "admin") {
+            redirect('?module=admin');
+          } else {
+            redirect('?module=home&action=lists');
+          }
+          exit;
         }
-        exit;
       } else {
         $errors['password']['match'] = 'Mật khẩu không đúng';
       }
@@ -92,7 +99,7 @@ $msgType = getFlashData('msg_type');
                 id="phone"
                 placeholder="Nhập số điện thoại"
                 value="<?php echo old('phone', $body) ?>"
-                
+
                 name="phone" />
               <?php echo form_error('phone', $errors, '<span class="text-danger">', '</span>'); ?>
             </div>
@@ -138,4 +145,5 @@ $msgType = getFlashData('msg_type');
     crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
