@@ -8,11 +8,12 @@ $menuItems = [
     ["label" => "Đơn hàng", "icon" => "fa-solid fa-cart-shopping", "controller" => "orders", "action" => "list"],
     ["label" => "Cấu hình", "icon" => "fa-solid fa-gear", "controller" => "site_settings", "action" => "list"],
 ];
+$avatar_admin = "https://static.vecteezy.com/system/resources/previews/012/210/707/non_2x/worker-employee-businessman-avatar-profile-icon-vector.jpg";
 ?>
 <div class="d-flex flex-column p-3 text-white sidebar">
     <!-- Logo + Admin -->
     <div class="d-flex align-items-center mb-4">
-        <img src="<?= BASE_URL ?>/logo.png" alt="Logo" class="me-2" style="width:40px;">
+        <img src="<?= $avatar_admin ?>" alt="Logo" class="me-2" style="width:40px;">
         <div>
             <div class="fw-bold">ADMIN</div>
             <small><?= htmlspecialchars($fullname ?? '') ?></small>
