@@ -20,8 +20,8 @@
 
 <?php
 $errors = [];
+$body = getBody();
 if (isPost()) {
-  $body = getBody();
 
   if (empty(trim($body['fullname']))) {
     $errors['fullname']['required'] = 'Vui lòng nhập họ và tên';
@@ -126,7 +126,7 @@ $msgType = getFlashData('msg_type');
                 id="email"
                 placeholder="Nhập email"
                 value="<?php echo old('email', $body) ?>"
-            
+
                 name="email" />
               <?php echo form_error('email', $errors, '<span class="text-danger">', '</span>'); ?>
             </div>
@@ -140,7 +140,7 @@ $msgType = getFlashData('msg_type');
                 id="phone"
                 placeholder="Nhập số điện thoại"
                 value="<?php echo old('phone', $body) ?>"
-                
+
                 name="phone" />
               <?php echo form_error('phone', $errors, '<span class="text-danger">', '</span>'); ?>
             </div>
@@ -182,15 +182,16 @@ $msgType = getFlashData('msg_type');
               <a href="?module=auth&action=login" class="btn btn-link p-0 ms-1">Đăng nhập</a>
           </form>
         </fieldset>
-    </div>
-    
-  </div>
+      </div>
 
-  <!--Bootstrap-->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
-    integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
+    </div>
+
+    <!--Bootstrap-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
+      integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
