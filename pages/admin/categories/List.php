@@ -31,13 +31,28 @@ $totalItems = $row ? array_values($row)[0] : 0;
 $totalPages = ceil($totalItems / $perPage);
 
 // --- QUERY PHÂN TRANG ---
-$sql = "SELECT c.*, u1.fullname AS created_by_name, u2.fullname AS updated_by_name
-        FROM categories c
-        LEFT JOIN users u1 ON c.created_by = u1.id
-        LEFT JOIN users u2 ON c.updated_by = u2.id
-        $whereSql
-        ORDER BY $order
-        LIMIT $perPage OFFSET $offset";
+$sql = "
+SELECT 
+    c.*,
+    (
+        SELECT u1.fullname 
+        FROM users u1 
+        WHERE u1.id = c.created_by
+        LIMIT 1
+    ) AS created_by_name,
+    (
+        SELECT u2.fullname 
+        FROM users u2 
+        WHERE u2.id = c.updated_by
+        LIMIT 1
+    ) AS updated_by_name
+FROM categories c
+$whereSql
+GROUP BY c.id
+ORDER BY $order
+LIMIT $perPage OFFSET $offset
+";
+
 
 $categories = getRows($sql, $params);
 
@@ -103,11 +118,11 @@ $msgType = getFlashData('msg_type');
                             <td><?= htmlspecialchars($cat['updated_at']) ?></td>
                             <td>
                                 <a href="<?= buildUrl('categories', 'Edit', ['id' => $cat['id']]) ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Sửa
+                                    Sửa
                                 </a>
                                 <a href="<?= buildUrl('categories', 'Delete', ['id' => $cat['id']]) ?>" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
-                                    <i class="bi bi-trash"></i> Xóa
+                                    Xóa
                                 </a>
                             </td>
                         </tr>

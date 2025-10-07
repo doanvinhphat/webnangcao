@@ -24,29 +24,40 @@ if (!empty($phone)) {
     $params['phone'] = '%' . $phone . '%';
 }
 
-$whereSql = $where ? "WHERE " . implode(" AND ", $where) : "";
+// Ghép điều kiện WHERE (KHÔNG thêm WHERE sẵn)
+$whereSql = $where ? " AND " . implode(" AND ", $where) : "";
 
 // ORDER (mới nhất trước)
 $order = "o.id DESC";
 
-// Đếm tổng số đơn
-$countSql = "SELECT COUNT(*) as total 
-             FROM orders o 
-             LEFT JOIN users u ON o.user_id = u.id
-             $whereSql";
+// --- Đếm tổng số bản ghi ---
+$countSql = "
+SELECT COUNT(*) AS total
+FROM orders o
+WHERE 1=1
+$whereSql
+";
+
 $row = first($countSql, $params);
 $totalItems = $row ? $row['total'] : 0;
 $totalPages = ceil($totalItems / $perPage);
 
-// Lấy danh sách đơn
-$sql = "SELECT o.*, u.fullname 
-        FROM orders o
-        LEFT JOIN users u ON o.user_id = u.id
-        $whereSql
-        ORDER BY $order
-        LIMIT $perPage OFFSET $offset";
+// --- Lấy danh sách đơn ---
+$sql = "
+SELECT 
+    o.*,
+    MAX(u.fullname) AS fullname
+FROM orders o
+JOIN users u ON o.user_id = u.id
+WHERE 1=1
+$whereSql
+GROUP BY o.id
+ORDER BY $order
+LIMIT $perPage OFFSET $offset
+";
 
 $orders = getRows($sql, $params);
+
 
 $msg = getFlashData('msg');
 $msgType = getFlashData('msg_type');
@@ -74,7 +85,7 @@ $msgType = getFlashData('msg_type');
 
         <!-- Lọc theo trạng thái -->
         <div class="col-md-3">
-            <select name="status" class="form-select">
+            <select name="status" class="form-select" onchange="this.form.submit()">
                 <option value="">-- Tất cả trạng thái --</option>
                 <option value="pending" <?= $status === 'pending' ? 'selected' : '' ?>>Chờ xử lý</option>
                 <option value="processing" <?= $status === 'processing' ? 'selected' : '' ?>>Đang xử lý</option>
@@ -141,7 +152,7 @@ $msgType = getFlashData('msg_type');
                             <td><?= htmlspecialchars($item['updated_at']) ?></td>
                             <td>
                                 <a href="<?= buildUrl('orders', 'Edit', ['id' => $item['id']]) ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Cập nhật
+                                    Cập nhật
                                 </a>
                             </td>
                         </tr>

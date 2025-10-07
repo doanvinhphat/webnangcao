@@ -49,20 +49,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Slide 4 -->
-                <div class="swiper-slide">
-                    <div class="row justify-content-center">
-                        <div class="col-6 col-sm-6">
-                            <img src="https://demo.graygrids.com/themes/shopgrids/assets/images/brands/07.png"
-                                class="img-fluid d-block mx-auto" alt="Brand 7">
-                        </div>
-                        <div class="col-6 col-sm-6">
-                            <img src="https://demo.graygrids.com/themes/shopgrids/assets/images/brands/08.png"
-                                class="img-fluid d-block mx-auto" alt="Brand 8">
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>

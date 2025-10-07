@@ -67,7 +67,7 @@ $msgType = getFlashData('msg_type');
                             <td><?= htmlspecialchars($item['updated_at']) ?></td>
                             <td>
                                 <a href="<?= buildUrl('site_settings', 'Edit', ['id' => $item['id']]) ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Sửa
+                                    Sửa
                                 </a>
                             </td>
                         </tr>

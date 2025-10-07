@@ -30,7 +30,7 @@ $totalPages = ceil($totalItems / $perPage);
 // --- GET DATA ---
 $sql = "SELECT v.*, u.fullname as created_by_name
         FROM vouchers v
-        LEFT JOIN users u ON v.created_by = u.id
+        JOIN users u ON v.created_by = u.id
         $whereSql
         ORDER BY $order
         LIMIT $perPage OFFSET $offset";
@@ -108,11 +108,11 @@ $msgType = getFlashData('msg_type');
                             <td><?= $v['updated_at'] ?></td>
                             <td>
                                 <a href="<?= buildUrl('vouchers', 'Edit', ['id' => $v['id']]) ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Sửa
+                                    Sửa
                                 </a>
                                 <a href="<?= buildUrl('vouchers', 'Delete', ['id' => $v['id']]) ?>" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa voucher này?');">
-                                    <i class="bi bi-trash"></i> Xóa
+                                    Xóa
                                 </a>
                             </td>
                         </tr>

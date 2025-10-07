@@ -1,11 +1,11 @@
-<?php 
+<?php
 $listCategories = getRows("SELECT * FROM categories");
 
 ?>
 
 <!-- Categories -->
 <div class="container my-2">
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
       <!-- Hamburger -->
       <button class="navbar-toggler custom-toggler" type="button" aria-controls="categoryMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +46,8 @@ $listCategories = getRows("SELECT * FROM categories");
 
   @media (min-width: 768px) {
     #categoryMenu {
-      display: flex !important; /* luôn hiện khi màn hình lớn */
+      display: flex !important;
+      /* luôn hiện khi màn hình lớn */
     }
   }
 </style>
-
-
-

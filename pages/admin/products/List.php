@@ -41,12 +41,17 @@ $row = first($countSql, $params);
 $totalItems = $row ? $row['total'] : 0;
 $totalPages = ceil($totalItems / $perPage);
 
-$sql = "SELECT p.*, c.name AS category_name
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id
-        $whereSql
-        ORDER BY $order
-        LIMIT $perPage OFFSET $offset";
+$sql = "
+SELECT 
+    p.*,
+    c.name AS category_name
+FROM products p
+JOIN categories c ON p.category_id = c.id
+$whereSql
+GROUP BY p.id
+ORDER BY $order
+LIMIT $perPage OFFSET $offset
+";
 
 $products = getRows($sql, $params);
 
@@ -163,11 +168,11 @@ $msgType = getFlashData('msg_type');
                             <td><?= htmlspecialchars($item['updated_at']) ?></td>
                             <td>
                                 <a href="<?= buildUrl('products', 'Edit', ['id' => $item['id']]) ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Sửa
+                                    Sửa
                                 </a>
                                 <a href="<?= buildUrl('products', 'Delete', ['id' => $item['id']]) ?>" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
-                                    <i class="bi bi-trash"></i> Xóa
+                                    Xóa
                                 </a>
                             </td>
                         </tr>

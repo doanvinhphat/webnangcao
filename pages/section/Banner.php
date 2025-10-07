@@ -58,19 +58,19 @@
     <!-- Right Column -->
     <div class="col-lg-4 d-flex flex-column gap-4">
       <!-- Top Card -->
-      <div class="card border-0 shadow-lg overflow-hidden rounded-4 position-relative">
+      <div class="card border-0 shadow overflow-hidden rounded-4 position-relative">
         <img src="assets/img/slider-bg5.jpg" class="w-100 h-100 object-fit-cover" alt="iPhone 12 Pro Max">
         <div class="card-img-overlay d-flex flex-column justify-content-center  text-white p-4">
         </div>
       </div>
 
       <!-- Bottom Card (new added) -->
-      <div class="card border-0 shadow-lg overflow-hidden rounded-4 position-relative">
+      <div class="card border-0 shadow overflow-hidden rounded-4 position-relative">
         <img src="assets/img/slider-bg6.jpg" class="w-100 h-100 object-fit-cover" alt="Weekly Sale">
         <div class="card-img-overlay d-flex flex-column justify-content-center align-items-start bg-dark bg-opacity-40 text-white p-4">
-          <h4 class="fw-bold mb-2">Weekly Sale!</h4>
+          <h4 class="fw-bold mb-2">Deal Sốc!</h4>
           <p class="mb-3">Giảm giá tới 50% cho tất cả sản phẩm online trong tuần này.</p>
-          <a href="#" class="btn btn-warning fw-semibold rounded-pill px-4 py-2">Shop Now</a>
+          <a href="#" class="btn btn-warning fw-semibold rounded-pill px-4 py-2">Mua ngay</a>
         </div>
       </div>
     </div>
