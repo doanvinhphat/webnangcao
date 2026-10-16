@@ -1,6 +1,5 @@
 <?php
 if (!defined('_INCODE')) die('Access denied...');
-
 $errors = [];
 $body = getBody();
 $userId = $_SESSION['currentUser']['id'];
@@ -97,69 +96,107 @@ if (isPost()) {
 
 <?php require_once 'templates/user/layouts/Header.php' ?>
 
-<!-- UI Form -->
+<!-- UI Form Nâng Cấp -->
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7 col-lg-6">
 
-            <h3 class="mb-4 text-center">Cập nhật thông tin cá nhân</h3>
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
 
-            <?php if (!empty($errors['general']['db'])): ?>
-                <div class="alert alert-danger"><?php echo $errors['general']['db']; ?></div>
-            <?php endif; ?>
+                    <h3 class="mb-4 text-center text-primary fw-bold">
+                        <i class="fa-solid fa-user-pen me-2"></i>Cập nhật thông tin cá nhân
+                    </h3>
 
-            <form method="post" enctype="multipart/form-data">
-
-                <!-- Phone -->
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Số điện thoại</label>
-                    <input type="text" class="form-control" id="phone" name="phone"
-                        value="<?php echo old('phone', $body, $currentUser['phone']); ?>">
-                    <?php echo form_error('phone', $errors, '<span class="text-danger">', '</span>'); ?>
-                </div>
-
-                <!-- Avatar -->
-                <div class="mb-3">
-                    <label for="avatar" class="form-label">Ảnh đại diện</label>
-                    <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
-                    <?php echo form_error('avatar', $errors, '<span class="text-danger">', '</span>'); ?>
-                    <?php if (!empty($currentUser['avatar'])): ?>
-                        <div class="mt-2">
-                            <img src="<?php echo htmlspecialchars($currentUser['avatar']); ?>" alt="Avatar"
-                                class="rounded-circle" width="80" height="80">
+                    <?php if (!empty($errors['general']['db'])): ?>
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="fa-solid fa-circle-exclamation me-2"></i>
+                            <?php echo $errors['general']['db']; ?>
                         </div>
                     <?php endif; ?>
-                </div>
 
-                <hr>
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
 
-                <!-- Password change -->
-                <div class="mb-3">
-                    <label for="old_password" class="form-label">Mật khẩu cũ</label>
-                    <input type="password" class="form-control" id="old_password" name="old_password">
-                    <?php echo form_error('old_password', $errors, '<span class="text-danger">', '</span>'); ?>
-                </div>
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-semibold">
+                                <i class="fa-solid fa-phone me-1 text-secondary"></i>Số điện thoại
+                            </label>
+                            <input type="text" class="form-control form-control-lg" id="phone" name="phone"
+                                placeholder="Nhập số điện thoại của bạn"
+                                value="<?php echo old('phone', $body, $currentUser['phone']); ?>">
+                            <?php echo form_error('phone', $errors, '<div class="text-danger mt-1 small">', '</div>'); ?>
+                        </div>
 
-                <div class="mb-3">
-                    <label for="new_password" class="form-label">Mật khẩu mới</label>
-                    <input type="password" class="form-control" id="new_password" name="new_password">
-                    <?php echo form_error('new_password', $errors, '<span class="text-danger">', '</span>'); ?>
-                </div>
+                        <!-- Avatar -->
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label fw-semibold">
+                                <i class="fa-solid fa-image me-1 text-secondary"></i>Ảnh đại diện
+                            </label>
+                            <input type="file" class="form-control form-control-lg" id="avatar" name="avatar" accept="image/*">
+                            <?php echo form_error('avatar', $errors, '<div class="text-danger mt-1 small">', '</div>'); ?>
 
-                <div class="mb-3">
-                    <label for="confirm_password" class="form-label">Xác nhận mật khẩu mới</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-                    <?php echo form_error('confirm_password', $errors, '<span class="text-danger">', '</span>'); ?>
-                </div>
+                            <?php if (!empty($currentUser['avatar'])): ?>
+                                <div class="mt-3 text-center">
+                                    <img src="<?php echo htmlspecialchars($currentUser['avatar']); ?>" alt="Avatar"
+                                        class="rounded-circle border border-3 border-primary shadow-sm"
+                                        width="90" height="90">
+                                    <p class="text-muted mt-2 small">Ảnh hiện tại của bạn</p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
 
-                <!-- Submit -->
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    <a class="btn btn-info" href="?module=home&action=lists">Quay lại trang chủ</a>
+                        <hr class="my-4">
+
+                        <!-- Password Section -->
+                        <h5 class="fw-bold text-secondary mb-3">
+                            <i class="fa-solid fa-lock me-2"></i>Đổi mật khẩu
+                        </h5>
+
+                        <div class="mb-3">
+                            <label for="old_password" class="form-label fw-semibold">Mật khẩu cũ</label>
+                            <input type="password" class="form-control form-control-lg" id="old_password" name="old_password"
+                                placeholder="Nhập mật khẩu cũ">
+                            <?php echo form_error('old_password', $errors, '<div class="text-danger mt-1 small">', '</div>'); ?>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="new_password" class="form-label fw-semibold">Mật khẩu mới</label>
+                            <input type="password" class="form-control form-control-lg" id="new_password" name="new_password"
+                                placeholder="Nhập mật khẩu mới">
+                            <?php echo form_error('new_password', $errors, '<div class="text-danger mt-1 small">', '</div>'); ?>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirm_password" class="form-label fw-semibold">Xác nhận mật khẩu mới</label>
+                            <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password"
+                                placeholder="Nhập lại mật khẩu mới">
+                            <?php echo form_error('confirm_password', $errors, '<div class="text-danger mt-1 small">', '</div>'); ?>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg fw-semibold">
+                                <i class="fa-solid fa-floppy-disk me-1"></i>Cập nhật
+                            </button>
+                            <a href="?module=home&action=lists" class="btn btn-outline-secondary btn-lg fw-semibold">
+                                <i class="fa-solid fa-house me-1"></i>Quay lại trang chủ
+                            </a>
+                        </div>
+
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- FontAwesome CDN -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-xh6O/CkQoQfTzCj1lA2aR2zqEXx4VgH14Q6gttxyPjdvVSkv5rH3g3R3HkJj7V0z0QzEPUWpo5E7L0FdsZ6Fzw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 <?php require_once 'templates/user/layouts/Footer.php' ?>

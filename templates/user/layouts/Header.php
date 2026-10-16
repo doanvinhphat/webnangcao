@@ -48,7 +48,7 @@
           <div class="col-12 col-md-2 d-flex justify-content-center">
             <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="?module=home&action=lists">
               <i class="bi bi-cart4 fs-2 text-primary me-2"></i>
-              <span class="fw-bold fs-4">MyWebsite</span>
+              <span class="fw-bold fs-4">MySmartPhone</span>
             </a>
           </div>
 

@@ -54,3 +54,7 @@ làm site settings
 
 note url xử lý role vào layout khi người dùng đã đăng nhập nhưng cố tình sửa URl để vào trang khác
 
+tên database = tienphat-site
+tên username = tienphat-site
+mật khẩu = Tienphat123@
+
